@@ -1,29 +1,47 @@
-cat << 'EOF' > index.html
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Resume QR — Pooja</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pooja's Resume QR Code</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <main class="card">
-    <h1>Pooja Sounder Rajan</h1>
-    <p class="subtitle">Scan to view my resume</p>
-
-    <img id="qrImg" alt="Resume QR code" width="280" height="280" />
-
-    <p class="hint">Open this page and show the QR to recruiters.</p>
-
-    <div class="actions">
-      <a id="openResumeBtn" class="btn" href="#" target="_blank" rel="noreferrer">
-        Open Resume
-      </a>
+    <div class="blob-container">
+        <div class="blob"></div>
+        <div class="blob"></div>
     </div>
-  </main>
+    <main class="container">
+        <section class="glass-card">
+            <header>
+                <h1>Pooja Sounder Rajan</h1>
+                <p class="tagline">Resume QR Code</p>
+            </header>
 
-  <script src="./script.js"></script>
+            <div class="qr-wrapper">
+                <div id="qr-container">
+                    <img id="qr-image" src="" alt="Resume QR Code">
+                    <div id="loader" class="loader"></div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a id="btn-open" class="btn btn-primary" href="#" target="_blank">View Resume</a>
+                <button id="btn-download" class="btn btn-secondary">Download QR</button>
+            </div>
+
+            <footer>
+                <p>Scan to explore my professional journey</p>
+            </footer>
+        </section>
+    </main>
+    <script src="script.js"></script>
 </body>
+
 </html>
-EOF
