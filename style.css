@@ -22,10 +22,17 @@ h1{
     color:#555;
     margin-bottom: 16px;
 }
-#qrCode{
-   
-    margin: 16px auto;
-    
+.status {
+  min-height: 18px;
+  color: #b00020;
+  font-size: 14px;
+  margin: 8px 0 6px 0;
+}
+
+#qr {
+  display: block;
+  margin: 16px auto;
+  background: white;
 }
 .hint{
     color:#666;
