@@ -1,43 +1,17 @@
 cat << 'EOF' > script.js
-const RESUME_URL = "https://drive.google.com/uc?export=download&id=1JEAMIAtuT3z0MasIIRrSkuojgcKOOeXx";
+const RESUME_URL = "https://drive.google.com/file/d/1JEAMIAtuT3z0MasIIRrSkuojgcKOOeXx/view?usp=sharing";
 
-const statusEl = document.getElementById("status");
-const canvas = document.getElementById("qr");
+// Free QR generator endpoint that returns an image.
+// This avoids CDN/library issues and works reliably on GitHub Pages.
+const qrEndpoint = "https://api.qrserver.com/v1/create-qr-code/";
+const size = "280x280";
+
+const qrImg = document.getElementById("qrImg");
 const openBtn = document.getElementById("openResumeBtn");
 
-function setStatus(msg) {
-  statusEl.textContent = msg;
-}
+openBtn.href = RESUME_URL;
 
-function isValidHttpUrl(s) {
-  try {
-    const u = new URL(s);
-    return u.protocol === "http:" || u.protocol === "https:";
-  } catch {
-    return false;
-  }
-}
-
-window.addEventListener("DOMContentLoaded", async () => {
-  if (!isValidHttpUrl(RESUME_URL)) {
-    setStatus("⚠️ Invalid resume URL in script.js");
-    return;
-  }
-
-  openBtn.href = RESUME_URL;
-
-  if (typeof QRCode === "undefined") {
-    setStatus("⚠️ QRCode library not loaded (qrcode.min.js missing or not served).");
-    return;
-  }
-
-  try {
-    setStatus("Generating QR...");
-    await QRCode.toCanvas(canvas, RESUME_URL, { width: 280, margin: 1 });
-    setStatus("");
-  } catch (e) {
-    console.error(e);
-    setStatus("⚠️ Failed to generate QR (see console).");
-  }
-});
+// Encode resume URL safely into query param
+const qrSrc = `${qrEndpoint}?size=${size}&data=${encodeURIComponent(RESUME_URL)}`;
+qrImg.src = qrSrc;
 EOF

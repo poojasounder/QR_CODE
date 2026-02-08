@@ -12,18 +12,17 @@ cat << 'EOF' > index.html
     <h1>Pooja Sounder Rajan</h1>
     <p class="subtitle">Scan to view my resume</p>
 
-    <div id="status" class="status"></div>
-    <canvas id="qr" width="280" height="280"></canvas>
+    <img id="qrImg" alt="Resume QR code" width="280" height="280" />
 
     <p class="hint">Open this page and show the QR to recruiters.</p>
 
     <div class="actions">
-      <a id="openResumeBtn" class="btn" href="#" target="_blank" rel="noreferrer">Open Resume</a>
+      <a id="openResumeBtn" class="btn" href="#" target="_blank" rel="noreferrer">
+        Open Resume
+      </a>
     </div>
   </main>
 
-  <!-- Local QR lib (no CDN issues) -->
-  <script src="./qrcode.min.js"></script>
   <script src="./script.js"></script>
 </body>
 </html>
