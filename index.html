@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pooja's Resume QR Code</title>
+    <title>Pooja's Resume Hub</title>
     <link rel="stylesheet" href="style.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,10 +17,44 @@
         <div class="blob"></div>
         <div class="blob"></div>
     </div>
-    <main class="container">
+
+    <!-- Role Selection View -->
+    <main id="selection-view" class="container">
+        <header class="hub-header">
+            <h1>Pooja Sounder Rajan</h1>
+            <p class="tagline">Select a role to view the corresponding resume QR</p>
+        </header>
+
+        <div class="roles-grid">
+            <button class="role-card" data-role="data-engineer">
+                <div class="role-icon">⚙️</div>
+                <h3>Data Engineer</h3>
+                <p>Pipeline & Infrastructure</p>
+            </button>
+            <button class="role-card" data-role="data-analyst">
+                <div class="role-icon">📊</div>
+                <h3>Data Analyst</h3>
+                <p>Insights & Visualization</p>
+            </button>
+            <button class="role-card" data-role="software-engineer">
+                <div class="role-icon">💻</div>
+                <h3>Software Engineer</h3>
+                <p>Full-Stack Development</p>
+            </button>
+            <button class="role-card" data-role="data-scientist">
+                <div class="role-icon">🧬</div>
+                <h3>Data Scientist</h3>
+                <p>ML & Predictive Modeling</p>
+            </button>
+        </div>
+    </main>
+
+    <!-- QR Code View (Hidden by default) -->
+    <main id="qr-view" class="container hidden">
         <section class="glass-card">
+            <button id="btn-back" class="btn-back">← Back to Selection</button>
             <header>
-                <h1>Pooja Sounder Rajan</h1>
+                <h2 id="selected-role-name">Role Name</h2>
                 <p class="tagline">Resume QR Code</p>
             </header>
 
@@ -41,6 +75,7 @@
             </footer>
         </section>
     </main>
+
     <script src="script.js"></script>
 </body>
 
