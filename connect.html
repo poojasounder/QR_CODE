@@ -148,9 +148,16 @@
             function triggerDownload() {
                 showStatus('📥 Saving resume...');
 
-                // Single, reliable method for mobile: Hidden Iframe
-                // This initiates the download without leaving the current page or opening tabs.
-                downloadFrame.src = roleData.url;
+                // Standard anchor click with _blank for maximum mobile compatibility.
+                // This informs the browser to handle the download in a new context,
+                // preventing it from being cancelled by the current page state.
+                const downloadLink = document.createElement('a');
+                downloadLink.href = roleData.url;
+                downloadLink.target = '_blank';
+                downloadLink.setAttribute('download', '');
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
             }
 
             btnResume.addEventListener('click', () => {
