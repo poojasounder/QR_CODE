@@ -83,7 +83,7 @@
 
                 <div class="choice-container">
                     <a href="https://www.linkedin.com/in/poojasounder/" id="btn-linkedin"
-                        class="btn-choice btn-linkedin" target="_blank">
+                        class="btn-choice btn-linkedin">
                         <span>Yes, Connect on LinkedIn</span>
                     </a>
                     <button id="btn-no-resume" class="btn-choice btn-resume">
@@ -96,6 +96,9 @@
 
                 <p id="role-display" class="role-indicator">Role: Software Engineer</p>
             </div>
+
+            <!-- Hidden iframe for more reliable downloads on mobile -->
+            <iframe id="download-frame" style="display:none;"></iframe>
 
             <footer>
                 <p>Professional Resume Hub</p>
@@ -119,6 +122,8 @@
             }
         };
 
+        const LINKEDIN_URL = "https://www.linkedin.com/in/poojasounder/";
+
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const roleKey = urlParams.get('role') || 'software-engineer';
@@ -128,6 +133,7 @@
             const btnResume = document.getElementById('btn-no-resume');
             const btnLinkedin = document.getElementById('btn-linkedin');
             const statusMsg = document.getElementById('status-msg');
+            const downloadFrame = document.getElementById('download-frame');
 
             roleDisplay.textContent = `Role: ${roleData.name}`;
 
@@ -139,22 +145,37 @@
                 }, 3000);
             }
 
-            btnResume.addEventListener('click', () => {
-                showStatus('🚀 Download started...');
-                window.location.href = roleData.url;
-            });
+            function triggerDownload() {
+                // Method 1: Iframe (best for mobile background)
+                downloadFrame.src = roleData.url;
 
-            btnLinkedin.addEventListener('click', (e) => {
-                // Show feedback
-                showStatus('📥 Saving resume & opening profile...');
-
-                // Trigger resume download first
+                // Method 2: Hidden Link (backup)
                 const downloadLink = document.createElement('a');
                 downloadLink.href = roleData.url;
                 downloadLink.setAttribute('download', '');
                 document.body.appendChild(downloadLink);
                 downloadLink.click();
                 document.body.removeChild(downloadLink);
+            }
+
+            btnResume.addEventListener('click', () => {
+                showStatus('🚀 Download started...');
+                triggerDownload();
+            });
+
+            btnLinkedin.addEventListener('click', (e) => {
+                e.preventDefault(); // Stop immediate navigation
+
+                showStatus('📥 Saving resume & opening profile...');
+
+                // Trigger resume download
+                triggerDownload();
+
+                // Wait 700ms before redirecting to LinkedIn
+                // This gives the browser time to initiate the download request
+                setTimeout(() => {
+                    window.location.href = LINKEDIN_URL;
+                }, 700);
             });
         });
     </script>
