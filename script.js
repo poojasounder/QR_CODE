@@ -9,7 +9,7 @@ const ROLES = {
     },
     'data-scientist': {
         name: 'Data Scientist',
-        url: 'https://drive.google.com/file/d/1JEAMIAtuT3z0MasIIRrSkuojgcKOOeXx/view?usp=sharing' // Placeholder
+        url: 'https://drive.google.com/file/d/1d3i06d1xkQNC3IO1I4uXMKrg5PdhSB2Y/view?usp=sharing' // Placeholder
     }
 };
 
