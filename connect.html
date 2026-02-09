@@ -148,24 +148,9 @@
             function triggerDownload() {
                 showStatus('📥 Saving resume...');
 
-                // Method 1: Open in a new window/tab (often triggers download prompt on iOS/Android)
-                // We use a small timeout to let the UI update first
-                setTimeout(() => {
-                    const downloadWindow = window.open(roleData.url, '_blank');
-
-                    // If window.open was blocked or finished, fall back to iframe
-                    if (!downloadWindow) {
-                        downloadFrame.src = roleData.url;
-                    }
-                }, 100);
-
-                // Method 2: Hidden Link (as backup)
-                const downloadLink = document.createElement('a');
-                downloadLink.href = roleData.url;
-                downloadLink.setAttribute('download', '');
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
+                // Single, reliable method for mobile: Hidden Iframe
+                // This initiates the download without leaving the current page or opening tabs.
+                downloadFrame.src = roleData.url;
             }
 
             btnResume.addEventListener('click', () => {
@@ -182,20 +167,23 @@
                     // Step 1: Trigger Download
                     isDownloadStarted = true;
 
-                    // Update Button UI
-                    btnLinkedin.innerHTML = '<span>✅ Download Started! Tap again for LinkedIn</span>';
-                    btnLinkedin.style.background = '#4CAF50';
+                    // Update Button UI to be very clear
+                    btnLinkedin.innerHTML = '<span>🚀 Success! Tap again for LinkedIn</span>';
+                    btnLinkedin.style.background = '#4714a5'; // Change to a distinct color
+                    btnLinkedin.style.boxShadow = '0 0 20px rgba(71, 20, 165, 0.5)';
 
-                    showStatus('📥 Resume saving... Finish that, then tap again!');
+                    showStatus('📥 Resume saving... Tap again to connect!');
 
-                    // Trigger resume download
+                    // Trigger resume download (exactly once)
                     triggerDownload();
                 } else {
                     // Step 2: Redirect to LinkedIn
-                    showStatus('🚀 Heading to LinkedIn...');
+                    showStatus('🔗 Opening LinkedIn profile...');
+                    btnLinkedin.innerHTML = '<span>Redirecting...</span>';
+
                     setTimeout(() => {
                         window.location.href = LINKEDIN_URL;
-                    }, 300);
+                    }, 200);
                 }
             });
         });
