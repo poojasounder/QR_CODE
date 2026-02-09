@@ -1,15 +1,15 @@
 const ROLES = {
     'data-engineer': {
         name: 'Data Engineer',
-        url: 'https://drive.google.com/file/d/1qa_HfFJ0pzDrQQcSiPo_IMm2KDdVCcxD/view?usp=sharing' // Placeholder
+        url: 'https://drive.google.com/uc?export=download&id=1qa_HfFJ0pzDrQQcSiPo_IMm2KDdVCcxD'
     },
     'software-engineer': {
         name: 'Software Engineer',
-        url: 'https://drive.google.com/file/d/1JEAMIAtuT3z0MasIIRrSkuojgcKOOeXx/view?usp=sharing'
+        url: 'https://drive.google.com/uc?export=download&id=1JEAMIAtuT3z0MasIIRrSkuojgcKOOeXx'
     },
     'data-scientist': {
         name: 'Data Scientist',
-        url: 'https://drive.google.com/file/d/1d3i06d1xkQNC3IO1I4uXMKrg5PdhSB2Y/view?usp=sharing' // Placeholder
+        url: 'https://drive.google.com/uc?export=download&id=1d3i06d1xkQNC3IO1I4uXMKrg5PdhSB2Y'
     }
 };
 
