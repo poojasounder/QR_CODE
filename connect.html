@@ -89,6 +89,9 @@
                     <button id="btn-no-resume" class="btn-choice btn-resume">
                         <span>No, Just Download Resume</span>
                     </button>
+                    <p id="status-msg"
+                        style="font-size: 0.9rem; margin-top: 5px; min-height: 20px; color: #4CAF50; transition: opacity 0.3s; opacity: 0;">
+                    </p>
                 </div>
 
                 <p id="role-display" class="role-indicator">Role: Software Engineer</p>
@@ -124,15 +127,27 @@
             const roleDisplay = document.getElementById('role-display');
             const btnResume = document.getElementById('btn-no-resume');
             const btnLinkedin = document.getElementById('btn-linkedin');
+            const statusMsg = document.getElementById('status-msg');
 
             roleDisplay.textContent = `Role: ${roleData.name}`;
 
+            function showStatus(text) {
+                statusMsg.textContent = text;
+                statusMsg.style.opacity = '1';
+                setTimeout(() => {
+                    statusMsg.style.opacity = '0';
+                }, 3000);
+            }
+
             btnResume.addEventListener('click', () => {
-                // Trigger download
+                showStatus('🚀 Download started...');
                 window.location.href = roleData.url;
             });
 
             btnLinkedin.addEventListener('click', (e) => {
+                // Show feedback
+                showStatus('📥 Saving resume & opening profile...');
+
                 // Trigger resume download first
                 const downloadLink = document.createElement('a');
                 downloadLink.href = roleData.url;
@@ -140,8 +155,6 @@
                 document.body.appendChild(downloadLink);
                 downloadLink.click();
                 document.body.removeChild(downloadLink);
-
-                // The browser will open the LinkedIn link in a new tab due to target="_blank"
             });
         });
     </script>
