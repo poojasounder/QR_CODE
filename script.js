@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const roleKey = card.dataset.role;
             const roleData = ROLES[roleKey];
             
-            showQRView(roleData);
+            showQRView(roleKey, roleData);
         });
     });
 
@@ -47,13 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
         loader.style.display = 'block';
     });
 
-    function showQRView(roleData) {
+    function showQRView(roleKey, roleData) {
         roleNameDisplay.textContent = roleData.name;
         currentRoleUrl = roleData.url;
 
-        // Generate QR Code URL
+        // Determine the base URL for the choice page (connect.html)
+        const basePath = window.location.href.split('index.html')[0].split('?')[0];
+        const connectUrl = `${basePath}connect.html?role=${encodeURIComponent(roleKey)}`;
+
+        // Generate QR Code URL pointing to the connect page choice
         const qrSize = "300x300";
-        const qrUrl = `${QR_API_BASE}?size=${qrSize}&data=${encodeURIComponent(currentRoleUrl)}&format=png&margin=10`;
+        const qrUrl = `${QR_API_BASE}?size=${qrSize}&data=${encodeURIComponent(connectUrl)}&format=png&margin=10`;
 
         // Load QR Code
         qrImage.src = qrUrl;
