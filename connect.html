@@ -132,9 +132,17 @@
                 window.location.href = roleData.url;
             });
 
-            // If they click LinkedIn, we still want them to be able to download the resume later?
-            // User said "if yes, it should prompt them to my linkedln page. if they say no, it should display my resume only"
-            // For "Yes", redirection is handled by the <a> tag.
+            btnLinkedin.addEventListener('click', (e) => {
+                // Trigger resume download first
+                const downloadLink = document.createElement('a');
+                downloadLink.href = roleData.url;
+                downloadLink.setAttribute('download', '');
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+
+                // The browser will open the LinkedIn link in a new tab due to target="_blank"
+            });
         });
     </script>
 </body>
