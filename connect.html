@@ -176,16 +176,21 @@
             btnLinkedin.addEventListener('click', (e) => {
                 e.preventDefault();
 
-                showStatus('📥 Saving resume... Then opening LinkedIn');
+                // Update Button UI
+                const originalContent = btnLinkedin.innerHTML;
+                btnLinkedin.innerHTML = '<span>📥 Downloading...</span>';
+                btnLinkedin.style.background = '#005a8a';
+                btnLinkedin.style.pointerEvents = 'none'; // Prevent double clicks
+
+                showStatus('📥 Saving resume... Connecting in 3s');
 
                 // Trigger resume download
                 triggerDownload();
 
-                // Wait longer (1.5s) before redirecting to LinkedIn
-                // This gives the browser much more time to establish the download connection
+                // Wait 3 seconds to ensure download starts before redirecting
                 setTimeout(() => {
                     window.location.href = LINKEDIN_URL;
-                }, 1500);
+                }, 3000);
             });
         });
     </script>
