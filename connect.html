@@ -173,24 +173,30 @@
                 showStatus('🚀 Download started! Check your Files app/Downloads.');
             });
 
+            let isDownloadStarted = false;
+
             btnLinkedin.addEventListener('click', (e) => {
                 e.preventDefault();
 
-                // Update Button UI
-                const originalContent = btnLinkedin.innerHTML;
-                btnLinkedin.innerHTML = '<span>📥 Downloading...</span>';
-                btnLinkedin.style.background = '#005a8a';
-                btnLinkedin.style.pointerEvents = 'none'; // Prevent double clicks
+                if (!isDownloadStarted) {
+                    // Step 1: Trigger Download
+                    isDownloadStarted = true;
 
-                showStatus('📥 Saving resume... Connecting in 3s');
+                    // Update Button UI
+                    btnLinkedin.innerHTML = '<span>✅ Download Started! Tap again for LinkedIn</span>';
+                    btnLinkedin.style.background = '#4CAF50';
 
-                // Trigger resume download
-                triggerDownload();
+                    showStatus('📥 Resume saving... Finish that, then tap again!');
 
-                // Wait 3 seconds to ensure download starts before redirecting
-                setTimeout(() => {
-                    window.location.href = LINKEDIN_URL;
-                }, 3000);
+                    // Trigger resume download
+                    triggerDownload();
+                } else {
+                    // Step 2: Redirect to LinkedIn
+                    showStatus('🚀 Heading to LinkedIn...');
+                    setTimeout(() => {
+                        window.location.href = LINKEDIN_URL;
+                    }, 300);
+                }
             });
         });
     </script>
