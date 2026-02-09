@@ -1,11 +1,7 @@
 const ROLES = {
     'data-engineer': {
         name: 'Data Engineer',
-        url: 'https://drive.google.com/file/d/1JEAMIAtuT3z0MasIIRrSkuojgcKOOeXx/view?usp=sharing' // Placeholder
-    },
-    'data-analyst': {
-        name: 'Data Analyst',
-        url: 'https://drive.google.com/file/d/1JEAMIAtuT3z0MasIIRrSkuojgcKOOeXx/view?usp=sharing' // Placeholder
+        url: 'https://drive.google.com/file/d/1qa_HfFJ0pzDrQQcSiPo_IMm2KDdVCcxD/view?usp=sharing' // Placeholder
     },
     'software-engineer': {
         name: 'Software Engineer',
