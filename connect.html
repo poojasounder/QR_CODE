@@ -146,10 +146,20 @@
             }
 
             function triggerDownload() {
-                // Method 1: Iframe (best for mobile background)
-                downloadFrame.src = roleData.url;
+                showStatus('📥 Saving resume...');
 
-                // Method 2: Hidden Link (backup)
+                // Method 1: Open in a new window/tab (often triggers download prompt on iOS/Android)
+                // We use a small timeout to let the UI update first
+                setTimeout(() => {
+                    const downloadWindow = window.open(roleData.url, '_blank');
+
+                    // If window.open was blocked or finished, fall back to iframe
+                    if (!downloadWindow) {
+                        downloadFrame.src = roleData.url;
+                    }
+                }, 100);
+
+                // Method 2: Hidden Link (as backup)
                 const downloadLink = document.createElement('a');
                 downloadLink.href = roleData.url;
                 downloadLink.setAttribute('download', '');
@@ -159,23 +169,23 @@
             }
 
             btnResume.addEventListener('click', () => {
-                showStatus('🚀 Download started...');
                 triggerDownload();
+                showStatus('🚀 Download started! Check your Files app/Downloads.');
             });
 
             btnLinkedin.addEventListener('click', (e) => {
-                e.preventDefault(); // Stop immediate navigation
+                e.preventDefault();
 
-                showStatus('📥 Saving resume & opening profile...');
+                showStatus('📥 Saving resume... Then opening LinkedIn');
 
                 // Trigger resume download
                 triggerDownload();
 
-                // Wait 700ms before redirecting to LinkedIn
-                // This gives the browser time to initiate the download request
+                // Wait longer (1.5s) before redirecting to LinkedIn
+                // This gives the browser much more time to establish the download connection
                 setTimeout(() => {
                     window.location.href = LINKEDIN_URL;
-                }, 700);
+                }, 1500);
             });
         });
     </script>
