@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const qrImage = document.getElementById('qr-image');
     const loader = document.getElementById('loader');
     const roleNameDisplay = document.getElementById('selected-role-name');
-    const btnOpen = document.getElementById('btn-open');
     const btnDownload = document.getElementById('btn-download');
 
     let currentRoleUrl = "";
@@ -51,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function showQRView(roleData) {
         roleNameDisplay.textContent = roleData.name;
         currentRoleUrl = roleData.url;
-        btnOpen.href = currentRoleUrl;
 
         // Generate QR Code URL
         const qrSize = "300x300";

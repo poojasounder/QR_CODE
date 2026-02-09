@@ -11,7 +11,7 @@ A professional, modern landing page designed to showcase role-specific resumes v
 - **Premium UI/UX**:
     - Responsive grid layout for mobile and desktop.
     - Smooth micro-animations and transitions.
-- **Action-Oriented**: Recruiters can scan the QR, view the resume directly, or download the QR code for later use.
+- **Action-Oriented**: Recruiters can scan the QR code instantly or download it for later use.
 
 ## 🛠️ Built With
 
